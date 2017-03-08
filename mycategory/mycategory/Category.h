@@ -11,7 +11,7 @@
 @interface Category : NSObject
 
 
-@property (nonatomic,strong) NSArray *SubCategory;
+@property (nonatomic,strong) NSArray *subcategories;
 
 @property (nonatomic,strong) NSString *name;
 

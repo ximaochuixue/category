@@ -32,6 +32,7 @@
             [categoryArray addObject:[Category categoryWithDict:dict]];
         }
         _categories = categoryArray;
+     
     }
     return  _categories;
 }
@@ -39,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
    
     [self.categroyTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
     
@@ -46,13 +48,6 @@
     
 }
 
-//
-//- (void) viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    
-//    
-//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -61,14 +56,16 @@
     }
     
     Category *c = self.categories[self.categroyTableView.indexPathForSelectedRow.row];
-    return c.SubCategory.count;
+    return c.subcategories.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     if (tableView == self.categroyTableView) {
-        static NSString *ID = @"category";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        static NSString *ID1 = @"category";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID1];
         Category *c = self.categories[indexPath.row];
         
         cell.imageView.image = [UIImage imageNamed:c.icon];
@@ -81,11 +78,11 @@
         return cell;
         
     }else{
-        static NSString *ID = @"subcategory";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        static NSString *ID2 = @"subcategory";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2];
         
         Category *c = self.categories[self.categroyTableView.indexPathForSelectedRow.row];
-        cell.textLabel.text = c.SubCategory[indexPath.row];
+        cell.textLabel.text = c.subcategories[indexPath.row];
         
         return cell;
     }
